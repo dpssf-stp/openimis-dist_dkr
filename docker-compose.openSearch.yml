@@ -14,6 +14,8 @@ services:
       - "plugins.security.disabled=true"
     volumes:
       - "opensearch-data1:/usr/share/opensearch/data"
+    ports:
+      - 9200:9200
     networks:
       openimis-net:
 
@@ -27,6 +29,8 @@ services:
       - SERVER_REWRITEBASEPATH=true
     volumes:
       - "./conf/opensearch/opensearch.yml:/usr/share/opensearch-dashboards/config/opensearch.yml"
+    ports:
+      - 5601:5601
     networks:
       openimis-net:
 
