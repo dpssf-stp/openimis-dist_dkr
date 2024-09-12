@@ -35,6 +35,7 @@ services:
       context: ./openimis-fe_js/
       dockerfile: Dockerfile
     restart: always
+    env_file: .env
     environment:
       - REACT_APP_API_URL=api
       - NEW_OPENIMIS_HOST=${DOMAIN}
@@ -55,12 +56,14 @@ services:
   backend:
     <<: *default-api
     container_name: ${PROJECT_NAME:-openimis}-api
-    command: start      
+    command: start
+    env_file: .env
   
   worker:
     <<: *default-api
     container_name: ${PROJECT_NAME:-openimis}-worker
     command: worker
+    env_file: .env
   rabbitmq:
     container_name: ${PROJECT_NAME:-openimis}-rabbitmq
     image: rabbitmq:3-management
